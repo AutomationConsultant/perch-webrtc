@@ -1,0 +1,160 @@
+build obj/talk/libjingle_media_unittest.actions_depends.stamp: stamp $
+    libgunit.a libjingle_media.a libjingle_unittest_main.a libyuv.a $
+    libvideo_capture_module.a libwebrtc_utility.a libaudio_coding_module.a $
+    libCNG.a libcommon_audio.a libsystem_wrappers.a libcommon_audio_sse2.a $
+    libG711.a libG722.a libiLBC.a libiSAC.a libiSACFix.a libPCM16B.a $
+    libNetEq.a libwebrtc_opus.a libopus.a libmedia_file.a $
+    libwebrtc_video_coding.a libwebrtc_i420.a libcommon_video.a $
+    libvideo_coding_utility.a libwebrtc_vp8.a libvpx.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp $
+    libvpx_asm_offsets_vp8.a libvpx_intrinsics_mmx.a $
+    libvpx_intrinsics_sse2.a libvpx_intrinsics_ssse3.a $
+    libvideo_render_module.a libvideo_engine_core.a librtp_rtcp.a $
+    libpaced_sender.a libremote_bitrate_estimator.a librbe_components.a $
+    libbitrate_controller.a libvideo_processing.a $
+    libvideo_processing_sse2.a libvoice_engine.a $
+    libaudio_conference_mixer.a libaudio_processing.a $
+    libaudio_processing_sse2.a libaudio_device.a libjingle.a libexpat.a $
+    libjsoncpp.a libcrnss.a libnss_static.a libcrnspr.a libsqlite_regexp.a $
+    libsqlite_regexp.a libicui18n.a libicuuc.a libicudata.a libcrnssckbi.a $
+    libcrssl.a libjingle_sound.a
+
+build obj/talk/libjingle_media_unittest.compile_depends.stamp: stamp $
+    obj/third_party/libvpx/libvpx.actions_rules_copies.stamp $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp
+
+build ../../../talk/media/testdata/1.frame_plus_1.byte: copy $
+    ../../talk/media/testdata/1.frame_plus_1.byte || $
+    obj/talk/libjingle_media_unittest.actions_depends.stamp
+build ../../../talk/media/testdata/captured-320x240-2s-48.frames: copy $
+    ../../talk/media/testdata/captured-320x240-2s-48.frames || $
+    obj/talk/libjingle_media_unittest.actions_depends.stamp
+build ../../../talk/media/testdata/h264-svc-99-640x360.rtpdump: copy $
+    ../../talk/media/testdata/h264-svc-99-640x360.rtpdump || $
+    obj/talk/libjingle_media_unittest.actions_depends.stamp
+build ../../../talk/media/testdata/video.rtpdump: copy $
+    ../../talk/media/testdata/video.rtpdump || $
+    obj/talk/libjingle_media_unittest.actions_depends.stamp
+build ../../../talk/media/testdata/voice.rtpdump: copy $
+    ../../talk/media/testdata/voice.rtpdump || $
+    obj/talk/libjingle_media_unittest.actions_depends.stamp
+build obj/talk/libjingle_media_unittest.actions_rules_copies.stamp: stamp $
+    ../../../talk/media/testdata/1.frame_plus_1.byte $
+    ../../../talk/media/testdata/captured-320x240-2s-48.frames $
+    ../../../talk/media/testdata/h264-svc-99-640x360.rtpdump $
+    ../../../talk/media/testdata/video.rtpdump $
+    ../../../talk/media/testdata/voice.rtpdump
+
+defines = -DANGLE_DX11 -DEXPAT_RELATIVE_PATH -DFEATURE_ENABLE_VOICEMAIL $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DLOGGING=1 $
+    -DSRTP_RELATIVE_PATH -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_PSTN $
+    -DHAVE_SRTP -DHAVE_WEBRTC_VIDEO -DHAVE_WEBRTC_VOICE $
+    -DUSE_WEBRTC_DEV_BRANCH -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DLIBPEERCONNECTION_LIB=1 $
+    -DIOS -DHAVE_NSS_SSL_H=1 -DSSL_USE_NSS_RNG -DCARBON_DEPRECATED=YES $
+    -DHASH_NAMESPACE=__gnu_cxx -DPOSIX -DDISABLE_DYNAMIC_CAST -D_REENTRANT $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../.. -I../../third_party -I../../third_party/webrtc $
+    -I../../webrtc -I../../testing/gtest/include $
+    -I../../third_party/libyuv/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/talk/media/base/libjingle_media_unittest.codec_unittest.o: cxx $
+    ../../talk/media/base/codec_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/base/libjingle_media_unittest.filemediaengine_unittest.o: $
+    cxx ../../talk/media/base/filemediaengine_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/base/libjingle_media_unittest.rtpdataengine_unittest.o: $
+    cxx ../../talk/media/base/rtpdataengine_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build obj/talk/media/base/libjingle_media_unittest.rtpdump_unittest.o: cxx $
+    ../../talk/media/base/rtpdump_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build obj/talk/media/base/libjingle_media_unittest.rtputils_unittest.o: cxx $
+    ../../talk/media/base/rtputils_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build obj/talk/media/base/libjingle_media_unittest.testutils.o: cxx $
+    ../../talk/media/base/testutils.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/base/libjingle_media_unittest.videocapturer_unittest.o: $
+    cxx ../../talk/media/base/videocapturer_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build obj/talk/media/base/libjingle_media_unittest.videocommon_unittest.o: $
+    cxx ../../talk/media/base/videocommon_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/devices/libjingle_media_unittest.dummydevicemanager_unittest.o: $
+    cxx ../../talk/media/devices/dummydevicemanager_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/devices/libjingle_media_unittest.filevideocapturer_unittest.o: $
+    cxx ../../talk/media/devices/filevideocapturer_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/webrtc/libjingle_media_unittest.webrtcpassthroughrender_unittest.o: $
+    cxx ../../talk/media/webrtc/webrtcpassthroughrender_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+build $
+    obj/talk/media/webrtc/libjingle_media_unittest.webrtcvideocapturer_unittest.o: $
+    cxx ../../talk/media/webrtc/webrtcvideocapturer_unittest.cc || $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp
+
+ldflags = -framework AVFoundation -framework CoreMedia -framework CoreVideo $
+    -Wl,-search_paths_first -force_load $
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a $
+    -mios-simulator-version-min=6.0 -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -arch i386 -L.
+libs = -framework AudioToolbox -framework CoreAudio $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/lib/libsqlite3.dylib
+build libjingle_media_unittest: link $
+    obj/talk/media/base/libjingle_media_unittest.codec_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.filemediaengine_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.rtpdataengine_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.rtpdump_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.rtputils_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.testutils.o $
+    obj/talk/media/base/libjingle_media_unittest.videocapturer_unittest.o $
+    obj/talk/media/base/libjingle_media_unittest.videocommon_unittest.o $
+    obj/talk/media/devices/libjingle_media_unittest.dummydevicemanager_unittest.o $
+    obj/talk/media/devices/libjingle_media_unittest.filevideocapturer_unittest.o $
+    obj/talk/media/webrtc/libjingle_media_unittest.webrtcpassthroughrender_unittest.o $
+    obj/talk/media/webrtc/libjingle_media_unittest.webrtcvideocapturer_unittest.o $
+    libiSACFix.a libPCM16B.a libCNG.a libwebrtc_utility.a libexpat.a $
+    librtp_rtcp.a libsystem_wrappers.a libgunit.a $
+    libvideo_processing_sse2.a libremote_bitrate_estimator.a $
+    libaudio_device.a libcrnss.a libaudio_conference_mixer.a libNetEq.a $
+    libjingle_media.a libopus.a libvpx_asm_offsets_vp8.a $
+    librbe_components.a libjingle.a libG711.a libjingle_unittest_main.a $
+    libaudio_processing.a libcrnspr.a libjingle_sound.a libicui18n.a $
+    libsqlite_regexp.a libvoice_engine.a libG722.a libpaced_sender.a $
+    libiLBC.a libaudio_coding_module.a libjsoncpp.a $
+    libvideo_coding_utility.a libicudata.a libiSAC.a $
+    libaudio_processing_sse2.a libicuuc.a libwebrtc_opus.a $
+    libvideo_engine_core.a libvideo_processing.a libcrnssckbi.a $
+    libvpx_intrinsics_ssse3.a libwebrtc_i420.a libcommon_video.a $
+    libvideo_capture_module.a libcommon_audio.a libyuv.a libwebrtc_vp8.a $
+    libwebrtc_video_coding.a libvpx_intrinsics_sse2.a libnss_static.a $
+    libcrssl.a libvpx.a libvpx_intrinsics_mmx.a libmedia_file.a $
+    libbitrate_controller.a libcommon_audio_sse2.a libvideo_render_module.a $
+    | libsqlite_regexp.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp

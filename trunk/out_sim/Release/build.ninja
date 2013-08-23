@@ -1,0 +1,291 @@
+cc = ../../third_party/llvm-build/Release+Asserts/bin/clang
+cxx = ../../third_party/llvm-build/Release+Asserts/bin/clang++
+ld = $cxx
+ar = ar
+ar_host = ar
+cc_host = ../../third_party/llvm-build/Release+Asserts/bin/clang
+cxx_host = ../../third_party/llvm-build/Release+Asserts/bin/clang++
+ld_host = $cxx_host
+
+pool link_pool
+  depth = 1
+
+rule cc
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
+  description = CC $out
+  depfile = $out.d
+  deps = gcc
+rule cc_s
+  command = $cc $defines $includes $cflags $cflags_c $cflags_pch_c -c $in -o $out
+  description = CC $out
+rule cxx
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_cc $cflags_pch_cc -c $in -o $out
+  description = CXX $out
+  depfile = $out.d
+  deps = gcc
+rule objc
+  command = $cc -MMD -MF $out.d $defines $includes $cflags $cflags_objc $cflags_pch_objc -c $in -o $out
+  description = OBJC $out
+  depfile = $out.d
+  deps = gcc
+rule objcxx
+  command = $cxx -MMD -MF $out.d $defines $includes $cflags $cflags_objcc $cflags_pch_objcc -c $in -o $out
+  description = OBJCXX $out
+  depfile = $out.d
+  deps = gcc
+rule alink
+  command = rm -f $out && ./gyp-mac-tool filter-libtool libtool $libtool_flags -static -o $out $in$postbuilds
+  description = LIBTOOL-STATIC $out, POSTBUILDS
+rule lipo
+  command = rm -f $out && lipo -create $in -output $out$postbuilds
+  description = LIPO $out, POSTBUILDS
+rule solink
+  command = if [ ! -e $lib -o ! -e ${lib}.TOC ] || otool -l $lib | grep -q LC_REEXPORT_DYLIB ; then $ld -shared $
+      $ldflags -o $lib $in $solibs $libs$postbuilds && { otool -l $lib | grep LC_ID_DYLIB -A 5; nm -gP $lib | cut $
+      -f1-2 -d' ' | grep -v U$$; true; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib $in $solibs $libs$postbuilds $
+      && { otool -l $lib | grep LC_ID_DYLIB -A 5; nm -gP $lib | cut -f1-2 -d' ' | grep -v U$$; true; } > ${lib}.tmp $
+      && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; fi; fi
+  description = SOLINK $lib, POSTBUILDS
+  pool = link_pool
+  restat = 1
+rule solink_module
+  command = if [ ! -e $lib -o ! -e ${lib}.TOC ] || otool -l $lib | grep -q LC_REEXPORT_DYLIB ; then $ld -shared $
+      $ldflags -o $lib $in $solibs $libs$postbuilds && { otool -l $lib | grep LC_ID_DYLIB -A 5; nm -gP $lib | cut $
+      -f1-2 -d' ' | grep -v U$$; true; } > ${lib}.TOC; else $ld -shared $ldflags -o $lib $in $solibs $libs$postbuilds $
+      && { otool -l $lib | grep LC_ID_DYLIB -A 5; nm -gP $lib | cut -f1-2 -d' ' | grep -v U$$; true; } > ${lib}.tmp $
+      && if ! cmp -s ${lib}.tmp ${lib}.TOC; then mv ${lib}.tmp ${lib}.TOC ; fi; fi
+  description = SOLINK(module) $lib, POSTBUILDS
+  pool = link_pool
+  restat = 1
+rule link
+  command = $ld $ldflags -o $out $in $solibs $libs$postbuilds
+  description = LINK $out, POSTBUILDS
+  pool = link_pool
+rule infoplist
+  command = $cc -E -P -Wno-trigraphs -x c $defines $in -o $out && plutil -convert xml1 $out $out
+  description = INFOPLIST $out
+rule mac_tool
+  command = $env ./gyp-mac-tool $mactool_cmd $in $out
+  description = MACTOOL $mactool_cmd $in
+rule package_framework
+  command = ./gyp-mac-tool package-framework $out $version$postbuilds && touch $out
+  description = PACKAGE FRAMEWORK $out, POSTBUILDS
+rule stamp
+  command = ${postbuilds}touch $out
+  description = STAMP $out
+rule copy
+  command = ln -f $in $out 2>/dev/null || (rm -rf $out && cp -af $in $out)
+  description = COPY $in $out
+
+subninja obj/third_party/jsoncpp/jsoncpp.ninja
+subninja obj/third_party/nss/nspr.ninja
+subninja obj.host/third_party/libvpx/libvpx_obj_int_extract.ninja
+subninja obj/third_party/libsrtp/libsrtp.ninja
+subninja obj/webrtc/system_wrappers/source/system_wrappers.ninja
+subninja obj/third_party/libsrtp/srtp_test_stat_driver.ninja
+subninja obj/third_party/expat/expat.ninja
+subninja obj/third_party/libsrtp/srtp_test_rand_gen.ninja
+subninja obj/third_party/libsrtp/srtp_test_env.ninja
+subninja obj/third_party/libvpx/libvpx_asm_offsets_vpx_scale.ninja
+subninja obj/talk/gunit.ninja
+subninja obj.host/testing/iossim/third_party/class-dump/class-dump.ninja
+subninja obj/webrtc/modules/audio_processing_sse2.ninja
+subninja obj/webrtc/modules/media_file.ninja
+subninja obj/third_party/icu/icudata.ninja
+subninja obj/webrtc/common_audio/common_audio_sse2.ninja
+subninja obj/webrtc/modules/video_coding/utility/video_coding_utility.ninja
+subninja obj/webrtc/modules/remote_bitrate_estimator/rbe_components.ninja
+subninja obj/webrtc/modules/webrtc_i420.ninja
+subninja obj/webrtc/modules/video_processing_sse2.ninja
+subninja obj/third_party/libvpx/libvpx_asm_offsets_vp8.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_ssse3.ninja
+subninja obj.host/third_party/icu/icudata.ninja
+subninja obj/third_party/libyuv/libyuv.ninja
+subninja obj/webrtc/modules/G711.ninja
+subninja obj/third_party/libsrtp/replay_driver.ninja
+subninja obj/webrtc/modules/PCM16B.ninja
+subninja obj/third_party/opus/opus.ninja
+subninja obj/third_party/libsrtp/rdbx_driver.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_sse2.ninja
+subninja obj/webrtc/modules/desktop_capture.ninja
+subninja obj.host/third_party/yasm/config_sources.ninja
+subninja obj.host/testing/iossim/iossim.ninja
+subninja obj/third_party/libvpx/libvpx_intrinsics_mmx.ninja
+subninja obj/third_party/libsrtp/srtp_test_sha1_driver.ninja
+subninja obj/webrtc/modules/G722.ninja
+subninja obj/third_party/libsrtp/rtpw.ninja
+subninja obj/third_party/libsrtp/srtp_test_datatypes_driver.ninja
+subninja obj/third_party/libsrtp/srtp_driver.ninja
+subninja obj/third_party/libsrtp/roc_driver.ninja
+subninja obj/third_party/libsrtp/srtp_test_aes_calc.ninja
+subninja obj/webrtc/common_audio/common_audio.ninja
+subninja obj/webrtc/modules/CNG.ninja
+subninja obj/third_party/icu/icuuc.ninja
+subninja obj/third_party/libsrtp/srtp_test_kernel_driver.ninja
+subninja obj/third_party/libsrtp/srtp_test_cipher_driver.ninja
+subninja obj/webrtc/modules/paced_sender.ninja
+subninja obj/webrtc/modules/bitrate_controller.ninja
+subninja obj.host/third_party/icu/icuuc.ninja
+subninja obj/third_party/libvpx/gen_asm_offsets_vp8.ninja
+subninja obj.host/third_party/yasm/genversion.ninja
+subninja obj/third_party/libvpx/gen_asm_offsets_vpx_scale.ninja
+subninja obj/webrtc/modules/remote_bitrate_estimator.ninja
+subninja obj/talk/libjingle_unittest_main.ninja
+subninja obj.host/third_party/icu/icui18n.ninja
+subninja obj/third_party/libsrtp/srtp_runtest.ninja
+subninja obj/third_party/opus/opus_demo.ninja
+subninja obj.host/third_party/yasm/genstring.ninja
+subninja obj.host/third_party/yasm/genmacro.ninja
+subninja obj.host/third_party/yasm/genmodule.ninja
+subninja obj/webrtc/modules/iLBC.ninja
+subninja obj/webrtc/common_video/common_video.ninja
+subninja obj/webrtc/modules/NetEq.ninja
+subninja obj/webrtc/modules/audio_device.ninja
+subninja obj/webrtc/modules/iSAC.ninja
+subninja obj/webrtc/modules/webrtc_opus.ninja
+subninja obj.host/third_party/yasm/re2c.ninja
+subninja obj/webrtc/modules/iSACFix.ninja
+subninja obj/webrtc/modules/audio_coding_module.ninja
+subninja obj.host/third_party/yasm/genperf_libs.ninja
+subninja obj/webrtc/modules/audio_processing.ninja
+subninja obj/third_party/icu/icui18n.ninja
+subninja obj/webrtc/modules/NetEq4.ninja
+subninja obj/webrtc/modules/rtp_rtcp.ninja
+subninja obj/third_party/sqlite/sqlite_regexp.ninja
+subninja obj.host/third_party/yasm/genperf.ninja
+subninja obj/third_party/sqlite/sqlite.ninja
+subninja obj.host/third_party/yasm/generate_files.ninja
+subninja obj.host/third_party/yasm/yasm.ninja
+subninja obj/third_party/nss/nss_static.ninja
+subninja obj/third_party/libvpx/libvpx.ninja
+subninja obj/third_party/libvpx/simple_decoder.ninja
+subninja obj/third_party/nss/nssckbi.ninja
+subninja obj/third_party/libvpx/simple_encoder.ninja
+subninja obj/webrtc/modules/video_coding/codecs/vp8/webrtc_vp8.ninja
+subninja obj/third_party/nss/nss.ninja
+subninja obj/webrtc/modules/webrtc_video_coding.ninja
+subninja obj/webrtc/modules/webrtc_utility.ninja
+subninja obj/net/third_party/nss/libssl.ninja
+subninja obj/webrtc/modules/video_render_module.ninja
+subninja obj/webrtc/modules/video_processing.ninja
+subninja obj/webrtc/modules/video_capture_module.ninja
+subninja obj/talk/libjingle.ninja
+subninja obj/webrtc/modules/audio_conference_mixer.ninja
+subninja obj/talk/libjingle_unittest.ninja
+subninja obj/talk/libjingle_sound.ninja
+subninja obj/webrtc/voice_engine/voice_engine.ninja
+subninja obj/talk/libjingle_sound_unittest.ninja
+subninja obj/webrtc/video_engine/video_engine_core.ninja
+subninja obj/talk/peerconnection_server.ninja
+subninja obj/talk/libjingle_media.ninja
+subninja obj/webrtc/webrtc.ninja
+subninja obj/talk/libjingle_media_unittest.ninja
+subninja obj/talk/libjingle_p2p.ninja
+subninja obj/talk/libjingle_p2p_unittest.ninja
+subninja obj/talk/relayserver.ninja
+subninja obj/talk/stunserver.ninja
+subninja obj/talk/turnserver.ninja
+subninja obj/talk/libjingle_xmpphelp.ninja
+subninja obj/talk/libjingle_peerconnection.ninja
+subninja obj/talk/libjingle_peerconnection_objc.ninja
+subninja obj/talk/login.ninja
+subninja obj/talk/AppRTCDemo.ninja
+subninja obj/talk/libjingle_peerconnection_objc_test.ninja
+subninja obj/talk/libjingle_peerconnection_unittest.ninja
+subninja obj/All.ninja
+
+# Short names for targets.
+build CNG: phony libCNG.a
+build libjingle_peerconnection_objc_test: phony libjingle_peerconnection_objc_test.app
+build libjingle_unittest_main: phony libjingle_unittest_main.a
+build sqlite_regexp: phony libsqlite_regexp.a
+build iSACFix: phony libiSACFix.a
+build expat: phony libexpat.a
+build gen_asm_offsets_vpx_scale: phony obj/third_party/libvpx/gen_asm_offsets_vpx_scale.actions_rules_copies.stamp
+build video_processing_sse2: phony libvideo_processing_sse2.a
+build common_video: phony libcommon_video.a
+build desktop_capture: phony libdesktop_capture.a
+build srtp_runtest: phony obj/third_party/libsrtp/srtp_runtest.actions_depends.stamp
+build audio_conference_mixer: phony libaudio_conference_mixer.a
+build audio_coding_module: phony libaudio_coding_module.a
+build libvpx_intrinsics_ssse3: phony libvpx_intrinsics_ssse3.a
+build NetEq: phony libNetEq.a
+build libssl: phony libcrssl.a
+build NetEq4: phony libNetEq4.a
+build libsrtp: phony libsrtp.a
+build libjingle_peerconnection: phony libjingle_peerconnection.a
+build webrtc_video_coding: phony libwebrtc_video_coding.a
+build iSAC: phony libiSAC.a
+build rtp_rtcp: phony librtp_rtcp.a
+build opus: phony libopus.a
+build remote_bitrate_estimator: phony libremote_bitrate_estimator.a
+build bitrate_controller: phony libbitrate_controller.a
+build common_audio_sse2: phony libcommon_audio_sse2.a
+build libvpx_intrinsics_sse2: phony libvpx_intrinsics_sse2.a
+build media_file: phony libmedia_file.a
+build libvpx_asm_offsets_vpx_scale: phony libvpx_asm_offsets_vpx_scale.a
+build video_engine_core: phony libvideo_engine_core.a
+build nssckbi: phony libcrnssckbi.a
+build webrtc: phony obj/webrtc/webrtc.actions_depends.stamp
+build webrtc_vp8: phony libwebrtc_vp8.a
+build webrtc_opus: phony libwebrtc_opus.a
+build system_wrappers: phony libsystem_wrappers.a
+build libvpx_intrinsics_mmx: phony libvpx_intrinsics_mmx.a
+build audio_device: phony libaudio_device.a
+build audio_processing: phony libaudio_processing.a
+build AppRTCDemo: phony AppRTCDemo.app
+build rbe_components: phony librbe_components.a
+build G722: phony libG722.a
+build voice_engine: phony libvoice_engine.a
+build All: phony obj/All.actions_depends.stamp
+build libjingle_xmpphelp: phony libjingle_xmpphelp.a
+build video_render_module: phony libvideo_render_module.a
+build audio_processing_sse2: phony libaudio_processing_sse2.a
+build icudata: phony libicudata.a
+build nss_static: phony libnss_static.a
+build webrtc_i420: phony libwebrtc_i420.a
+build libyuv: phony libyuv.a
+build gunit: phony libgunit.a
+build video_capture_module: phony libvideo_capture_module.a
+build libvpx: phony libvpx.a
+build sqlite: phony libsqlite_regexp.a
+build icuuc: phony libicuuc.a
+build libjingle_peerconnection_objc: phony libjingle_peerconnection_objc.a
+build nspr: phony libcrnspr.a
+build nss: phony libcrnss.a
+build paced_sender: phony libpaced_sender.a
+build icui18n: phony libicui18n.a
+build gen_asm_offsets_vp8: phony obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp
+build libjingle_p2p: phony libjingle_p2p.a
+build jsoncpp: phony libjsoncpp.a
+build G711: phony libG711.a
+build libvpx_asm_offsets_vp8: phony libvpx_asm_offsets_vp8.a
+build iLBC: phony libiLBC.a
+build video_coding_utility: phony libvideo_coding_utility.a
+build libjingle_sound: phony libjingle_sound.a
+build libjingle_media: phony libjingle_media.a
+build PCM16B: phony libPCM16B.a
+build common_audio: phony libcommon_audio.a
+build webrtc_utility: phony libwebrtc_utility.a
+build video_processing: phony libvideo_processing.a
+build libjingle: phony libjingle.a
+
+build all: phony libiSACFix.a class-dump libjingle_media_unittest librbe_components.a libG711.a $
+    obj/webrtc/webrtc.actions_depends.stamp obj.host/third_party/yasm/generate_files.actions_rules_copies.stamp $
+    libG722.a libpaced_sender.a turnserver peerconnection_server libjingle_p2p.a stunserver $
+    libaudio_processing_sse2.a libcrnssckbi.a obj/All.actions_depends.stamp libvideo_render_module.a genstring $
+    libbitrate_controller.a libvideo_processing.a libjingle_peerconnection_unittest libPCM16B.a libopus.a libNetEq4.a $
+    libexpat.a libsystem_wrappers.a libvideo_processing_sse2.a libaudio_device.a genmodule $
+    libaudio_conference_mixer.a libNetEq.a libjsoncpp.a yasm libcrnspr.a libjingle_sound.a libsqlite_regexp.a $
+    libiLBC.a libaudio_coding_module.a genperf libicudata.a libwebrtc_opus.a libjingle_xmpphelp.a $
+    libdesktop_capture.a libcommon_video.a obj.host/third_party/yasm/libgenperf_libs.a libcommon_audio.a $
+    libjingle_peerconnection_objc_test.app libcrnss.a iossim libnss_static.a libvpx.a login libvpx_obj_int_extract $
+    libaudio_processing.a librtp_rtcp.a libgunit.a libremote_bitrate_estimator.a genmacro libvpx_asm_offsets_vp8.a $
+    libjingle.a libvideo_coding_utility.a libiSAC.a libwebrtc_utility.a libvpx_intrinsics_ssse3.a AppRTCDemo.app $
+    libwebrtc_i420.a libvideo_capture_module.a libyuv.a $
+    obj/third_party/libvpx/gen_asm_offsets_vp8.actions_rules_copies.stamp libjingle_sound_unittest $
+    libwebrtc_video_coding.a libcrssl.a libmedia_file.a libCNG.a libvpx_intrinsics_sse2.a genversion $
+    libjingle_unittest_main.a libsrtp.a libjingle_p2p_unittest libicui18n.a libvoice_engine.a libjingle_media.a $
+    libjingle_peerconnection.a libicuuc.a libvideo_engine_core.a relayserver re2c libjingle_unittest $
+    libcommon_audio_sse2.a libjingle_peerconnection_objc.a libvpx_intrinsics_mmx.a libwebrtc_vp8.a
+default all

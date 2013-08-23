@@ -1,0 +1,29 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -DDISABLE_NACL -DCHROMIUM_BUILD -DUSE_LIBJPEG_TURBO=1 $
+    -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 -DENABLE_SPELLCHECK=1 $
+    -DDISABLE_FTP_SUPPORT=1 -DWEBRTC_MAC -DWEBRTC_IOS $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../../webrtc -I../.. -I../.. -I../../third_party/opus/src/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Werror -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wall -Wendif-labels -Wextra $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build $
+    obj/webrtc/modules/audio_coding/codecs/opus/webrtc_opus.opus_interface.o: $
+    cc ../../webrtc/modules/audio_coding/codecs/opus/opus_interface.c
+
+build libwebrtc_opus.a: alink $
+    obj/webrtc/modules/audio_coding/codecs/opus/webrtc_opus.opus_interface.o

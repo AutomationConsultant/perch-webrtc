@@ -1,0 +1,68 @@
+build obj/talk/libjingle_sound_unittest.actions_depends.stamp: stamp $
+    libgunit.a libjingle_sound.a libjingle_unittest_main.a libjingle.a $
+    libexpat.a libjsoncpp.a libcrnss.a libnss_static.a libcrnspr.a $
+    libsqlite_regexp.a libsqlite_regexp.a libicui18n.a libicuuc.a $
+    libicudata.a libcrnssckbi.a libcrssl.a libyuv.a
+
+defines = -DANGLE_DX11 -DEXPAT_RELATIVE_PATH -DFEATURE_ENABLE_VOICEMAIL $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DLOGGING=1 $
+    -DSRTP_RELATIVE_PATH -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_PSTN $
+    -DHAVE_SRTP -DHAVE_WEBRTC_VIDEO -DHAVE_WEBRTC_VOICE $
+    -DUSE_WEBRTC_DEV_BRANCH -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DLIBPEERCONNECTION_LIB=1 $
+    -DIOS -DHAVE_NSS_SSL_H=1 -DSSL_USE_NSS_RNG -DCARBON_DEPRECATED=YES $
+    -DHASH_NAMESPACE=__gnu_cxx -DPOSIX -DDISABLE_DYNAMIC_CAST -D_REENTRANT $
+    -DNDEBUG -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 $
+    -DNS_BLOCK_ASSERTIONS=1
+includes = -I../.. -I../../third_party -I../../third_party/webrtc $
+    -I../../webrtc -I../../testing/gtest/include $
+    -I../../third_party/libyuv/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -Os -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build $
+    obj/talk/sound/libjingle_sound_unittest.automaticallychosensoundsystem_unittest.o: $
+    cxx ../../talk/sound/automaticallychosensoundsystem_unittest.cc
+
+ldflags = -Wl,-search_paths_first -force_load $
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a $
+    -Wl,-dead_strip -mios-simulator-version-min=6.0 -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -arch i386 -L.
+libs = $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/lib/libsqlite3.dylib
+build libjingle_sound_unittest: link $
+    obj/talk/sound/libjingle_sound_unittest.automaticallychosensoundsystem_unittest.o $
+    libjsoncpp.a libicuuc.a libicudata.a libjingle.a libexpat.a $
+    libjingle_unittest_main.a libcrnspr.a libgunit.a libjingle_sound.a $
+    libcrnssckbi.a libicui18n.a libnss_static.a libcrnss.a libyuv.a $
+    libsqlite_regexp.a libcrssl.a | libsqlite_regexp.a
+  postbuilds = $ && (export $
+      BUILT_PRODUCTS_DIR=/Users/perch/WebRTC/trunk/out_sim/Release; export $
+      CONFIGURATION=Release; export $
+      EXECUTABLE_NAME=libjingle_sound_unittest; export $
+      EXECUTABLE_PATH=libjingle_sound_unittest; export $
+      FULL_PRODUCT_NAME=libjingle_sound_unittest; export $
+      PRODUCT_NAME=libjingle_sound_unittest; export $
+      PRODUCT_TYPE=com.apple.product-type.tool; export $
+      SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk; $
+      export SRCROOT=/Users/perch/WebRTC/trunk/out_sim/Release/../../talk; $
+      export SOURCE_ROOT="$${SRCROOT}"; export $
+      TARGET_BUILD_DIR=/Users/perch/WebRTC/trunk/out_sim/Release; export $
+      TEMP_DIR="$${TMPDIR}"; (cd ../../talk && strip  $
+      ../out_sim/Release/libjingle_sound_unittest); G=$$?; ((exit $$G) || $
+      rm -rf libjingle_sound_unittest) && exit $$G)

@@ -1,0 +1,21 @@
+build obj/All.actions_depends.stamp: stamp $
+    obj/webrtc/webrtc.actions_depends.stamp libjingle.a libjingle_sound.a $
+    libjingle_media.a libjingle_p2p.a libjingle_peerconnection.a $
+    libjingle_peerconnection_objc.a libjingle_xmpphelp.a relayserver $
+    stunserver turnserver login peerconnection_server AppRTCDemo.app $
+    libgunit.a libjingle_unittest_main.a libjingle_unittest $
+    libjingle_sound_unittest libjingle_media_unittest $
+    libjingle_p2p_unittest libjingle_peerconnection_unittest $
+    libjingle_peerconnection_objc_test.app
+
+build obj/All.compile_depends.stamp: stamp $
+    obj/talk/relayserver.compile_depends.stamp $
+    obj/talk/stunserver.compile_depends.stamp $
+    obj/talk/turnserver.compile_depends.stamp $
+    obj/talk/login.compile_depends.stamp $
+    obj/talk/AppRTCDemo.compile_depends.stamp $
+    obj/talk/libjingle_media_unittest.actions_rules_copies.stamp $
+    obj/talk/libjingle_p2p_unittest.compile_depends.stamp $
+    obj/talk/libjingle_peerconnection_unittest.compile_depends.stamp $
+    obj/talk/libjingle_peerconnection_objc_test.compile_depends.stamp
+

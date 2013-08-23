@@ -1,0 +1,200 @@
+defines = -DANGLE_DX11 -DEXPAT_RELATIVE_PATH -DFEATURE_ENABLE_VOICEMAIL $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DLOGGING=1 $
+    -DSRTP_RELATIVE_PATH -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_PSTN $
+    -DHAVE_SRTP -DHAVE_WEBRTC_VIDEO -DHAVE_WEBRTC_VOICE $
+    -DUSE_WEBRTC_DEV_BRANCH -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DLIBPEERCONNECTION_LIB=1 $
+    -DIOS -DHAVE_NSS_SSL_H=1 -DSSL_USE_NSS_RNG -DCARBON_DEPRECATED=YES $
+    -DHASH_NAMESPACE=__gnu_cxx -DPOSIX -DDISABLE_DYNAMIC_CAST -D_REENTRANT $
+    -DHAVE_INT16_T -DHAVE_INT32_T -DHAVE_INT8_T -DHAVE_UINT16_T $
+    -DHAVE_UINT32_T -DHAVE_UINT64_T -DHAVE_UINT8_T -DHAVE_STDINT_H $
+    -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H -DINLINE=inline -DCPU_CISC $
+    -DXML_STATIC -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../.. -I../../third_party -I../../third_party/webrtc $
+    -I../../webrtc -I../../testing/gtest/include $
+    -I../../third_party/libsrtp/config $
+    -I../../third_party/libsrtp/srtp/include $
+    -I../../third_party/libsrtp/srtp/crypto/include $
+    -I../../third_party/expat/files/lib $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -I../../third_party/libyuv/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/talk/p2p/base/libjingle_p2p.asyncstuntcpsocket.o: cxx $
+    ../../talk/p2p/base/asyncstuntcpsocket.cc
+build obj/talk/p2p/base/libjingle_p2p.basicpacketsocketfactory.o: cxx $
+    ../../talk/p2p/base/basicpacketsocketfactory.cc
+build obj/talk/p2p/base/libjingle_p2p.constants.o: cxx $
+    ../../talk/p2p/base/constants.cc
+build obj/talk/p2p/base/libjingle_p2p.dtlstransportchannel.o: cxx $
+    ../../talk/p2p/base/dtlstransportchannel.cc
+build obj/talk/p2p/base/libjingle_p2p.p2ptransport.o: cxx $
+    ../../talk/p2p/base/p2ptransport.cc
+build obj/talk/p2p/base/libjingle_p2p.p2ptransportchannel.o: cxx $
+    ../../talk/p2p/base/p2ptransportchannel.cc
+build obj/talk/p2p/base/libjingle_p2p.parsing.o: cxx $
+    ../../talk/p2p/base/parsing.cc
+build obj/talk/p2p/base/libjingle_p2p.port.o: cxx ../../talk/p2p/base/port.cc
+build obj/talk/p2p/base/libjingle_p2p.portallocator.o: cxx $
+    ../../talk/p2p/base/portallocator.cc
+build obj/talk/p2p/base/libjingle_p2p.portallocatorsessionproxy.o: cxx $
+    ../../talk/p2p/base/portallocatorsessionproxy.cc
+build obj/talk/p2p/base/libjingle_p2p.portproxy.o: cxx $
+    ../../talk/p2p/base/portproxy.cc
+build obj/talk/p2p/base/libjingle_p2p.pseudotcp.o: cxx $
+    ../../talk/p2p/base/pseudotcp.cc
+build obj/talk/p2p/base/libjingle_p2p.rawtransport.o: cxx $
+    ../../talk/p2p/base/rawtransport.cc
+build obj/talk/p2p/base/libjingle_p2p.rawtransportchannel.o: cxx $
+    ../../talk/p2p/base/rawtransportchannel.cc
+build obj/talk/p2p/base/libjingle_p2p.relayport.o: cxx $
+    ../../talk/p2p/base/relayport.cc
+build obj/talk/p2p/base/libjingle_p2p.relayserver.o: cxx $
+    ../../talk/p2p/base/relayserver.cc
+build obj/talk/p2p/base/libjingle_p2p.session.o: cxx $
+    ../../talk/p2p/base/session.cc
+build obj/talk/p2p/base/libjingle_p2p.sessiondescription.o: cxx $
+    ../../talk/p2p/base/sessiondescription.cc
+build obj/talk/p2p/base/libjingle_p2p.sessionmanager.o: cxx $
+    ../../talk/p2p/base/sessionmanager.cc
+build obj/talk/p2p/base/libjingle_p2p.sessionmessages.o: cxx $
+    ../../talk/p2p/base/sessionmessages.cc
+build obj/talk/p2p/base/libjingle_p2p.stun.o: cxx ../../talk/p2p/base/stun.cc
+build obj/talk/p2p/base/libjingle_p2p.stunport.o: cxx $
+    ../../talk/p2p/base/stunport.cc
+build obj/talk/p2p/base/libjingle_p2p.stunrequest.o: cxx $
+    ../../talk/p2p/base/stunrequest.cc
+build obj/talk/p2p/base/libjingle_p2p.stunserver.o: cxx $
+    ../../talk/p2p/base/stunserver.cc
+build obj/talk/p2p/base/libjingle_p2p.tcpport.o: cxx $
+    ../../talk/p2p/base/tcpport.cc
+build obj/talk/p2p/base/libjingle_p2p.transport.o: cxx $
+    ../../talk/p2p/base/transport.cc
+build obj/talk/p2p/base/libjingle_p2p.transportchannel.o: cxx $
+    ../../talk/p2p/base/transportchannel.cc
+build obj/talk/p2p/base/libjingle_p2p.transportchannelproxy.o: cxx $
+    ../../talk/p2p/base/transportchannelproxy.cc
+build obj/talk/p2p/base/libjingle_p2p.transportdescriptionfactory.o: cxx $
+    ../../talk/p2p/base/transportdescriptionfactory.cc
+build obj/talk/p2p/base/libjingle_p2p.turnport.o: cxx $
+    ../../talk/p2p/base/turnport.cc
+build obj/talk/p2p/base/libjingle_p2p.turnserver.o: cxx $
+    ../../talk/p2p/base/turnserver.cc
+build obj/talk/p2p/client/libjingle_p2p.basicportallocator.o: cxx $
+    ../../talk/p2p/client/basicportallocator.cc
+build obj/talk/p2p/client/libjingle_p2p.connectivitychecker.o: cxx $
+    ../../talk/p2p/client/connectivitychecker.cc
+build obj/talk/p2p/client/libjingle_p2p.httpportallocator.o: cxx $
+    ../../talk/p2p/client/httpportallocator.cc
+build obj/talk/p2p/client/libjingle_p2p.socketmonitor.o: cxx $
+    ../../talk/p2p/client/socketmonitor.cc
+build obj/talk/session/tunnel/libjingle_p2p.pseudotcpchannel.o: cxx $
+    ../../talk/session/tunnel/pseudotcpchannel.cc
+build obj/talk/session/tunnel/libjingle_p2p.tunnelsessionclient.o: cxx $
+    ../../talk/session/tunnel/tunnelsessionclient.cc
+build obj/talk/session/tunnel/libjingle_p2p.securetunnelsessionclient.o: $
+    cxx ../../talk/session/tunnel/securetunnelsessionclient.cc
+build obj/talk/session/media/libjingle_p2p.audiomonitor.o: cxx $
+    ../../talk/session/media/audiomonitor.cc
+build obj/talk/session/media/libjingle_p2p.call.o: cxx $
+    ../../talk/session/media/call.cc
+build obj/talk/session/media/libjingle_p2p.channel.o: cxx $
+    ../../talk/session/media/channel.cc
+build obj/talk/session/media/libjingle_p2p.channelmanager.o: cxx $
+    ../../talk/session/media/channelmanager.cc
+build obj/talk/session/media/libjingle_p2p.currentspeakermonitor.o: cxx $
+    ../../talk/session/media/currentspeakermonitor.cc
+build obj/talk/session/media/libjingle_p2p.mediamessages.o: cxx $
+    ../../talk/session/media/mediamessages.cc
+build obj/talk/session/media/libjingle_p2p.mediamonitor.o: cxx $
+    ../../talk/session/media/mediamonitor.cc
+build obj/talk/session/media/libjingle_p2p.mediarecorder.o: cxx $
+    ../../talk/session/media/mediarecorder.cc
+build obj/talk/session/media/libjingle_p2p.mediasession.o: cxx $
+    ../../talk/session/media/mediasession.cc
+build obj/talk/session/media/libjingle_p2p.mediasessionclient.o: cxx $
+    ../../talk/session/media/mediasessionclient.cc
+build obj/talk/session/media/libjingle_p2p.rtcpmuxfilter.o: cxx $
+    ../../talk/session/media/rtcpmuxfilter.cc
+build obj/talk/session/media/libjingle_p2p.soundclip.o: cxx $
+    ../../talk/session/media/soundclip.cc
+build obj/talk/session/media/libjingle_p2p.srtpfilter.o: cxx $
+    ../../talk/session/media/srtpfilter.cc
+build obj/talk/session/media/libjingle_p2p.ssrcmuxfilter.o: cxx $
+    ../../talk/session/media/ssrcmuxfilter.cc
+build obj/talk/session/media/libjingle_p2p.typingmonitor.o: cxx $
+    ../../talk/session/media/typingmonitor.cc
+
+build libjingle_p2p.a: alink $
+    obj/talk/p2p/base/libjingle_p2p.asyncstuntcpsocket.o $
+    obj/talk/p2p/base/libjingle_p2p.basicpacketsocketfactory.o $
+    obj/talk/p2p/base/libjingle_p2p.constants.o $
+    obj/talk/p2p/base/libjingle_p2p.dtlstransportchannel.o $
+    obj/talk/p2p/base/libjingle_p2p.p2ptransport.o $
+    obj/talk/p2p/base/libjingle_p2p.p2ptransportchannel.o $
+    obj/talk/p2p/base/libjingle_p2p.parsing.o $
+    obj/talk/p2p/base/libjingle_p2p.port.o $
+    obj/talk/p2p/base/libjingle_p2p.portallocator.o $
+    obj/talk/p2p/base/libjingle_p2p.portallocatorsessionproxy.o $
+    obj/talk/p2p/base/libjingle_p2p.portproxy.o $
+    obj/talk/p2p/base/libjingle_p2p.pseudotcp.o $
+    obj/talk/p2p/base/libjingle_p2p.rawtransport.o $
+    obj/talk/p2p/base/libjingle_p2p.rawtransportchannel.o $
+    obj/talk/p2p/base/libjingle_p2p.relayport.o $
+    obj/talk/p2p/base/libjingle_p2p.relayserver.o $
+    obj/talk/p2p/base/libjingle_p2p.session.o $
+    obj/talk/p2p/base/libjingle_p2p.sessiondescription.o $
+    obj/talk/p2p/base/libjingle_p2p.sessionmanager.o $
+    obj/talk/p2p/base/libjingle_p2p.sessionmessages.o $
+    obj/talk/p2p/base/libjingle_p2p.stun.o $
+    obj/talk/p2p/base/libjingle_p2p.stunport.o $
+    obj/talk/p2p/base/libjingle_p2p.stunrequest.o $
+    obj/talk/p2p/base/libjingle_p2p.stunserver.o $
+    obj/talk/p2p/base/libjingle_p2p.tcpport.o $
+    obj/talk/p2p/base/libjingle_p2p.transport.o $
+    obj/talk/p2p/base/libjingle_p2p.transportchannel.o $
+    obj/talk/p2p/base/libjingle_p2p.transportchannelproxy.o $
+    obj/talk/p2p/base/libjingle_p2p.transportdescriptionfactory.o $
+    obj/talk/p2p/base/libjingle_p2p.turnport.o $
+    obj/talk/p2p/base/libjingle_p2p.turnserver.o $
+    obj/talk/p2p/client/libjingle_p2p.basicportallocator.o $
+    obj/talk/p2p/client/libjingle_p2p.connectivitychecker.o $
+    obj/talk/p2p/client/libjingle_p2p.httpportallocator.o $
+    obj/talk/p2p/client/libjingle_p2p.socketmonitor.o $
+    obj/talk/session/tunnel/libjingle_p2p.pseudotcpchannel.o $
+    obj/talk/session/tunnel/libjingle_p2p.tunnelsessionclient.o $
+    obj/talk/session/tunnel/libjingle_p2p.securetunnelsessionclient.o $
+    obj/talk/session/media/libjingle_p2p.audiomonitor.o $
+    obj/talk/session/media/libjingle_p2p.call.o $
+    obj/talk/session/media/libjingle_p2p.channel.o $
+    obj/talk/session/media/libjingle_p2p.channelmanager.o $
+    obj/talk/session/media/libjingle_p2p.currentspeakermonitor.o $
+    obj/talk/session/media/libjingle_p2p.mediamessages.o $
+    obj/talk/session/media/libjingle_p2p.mediamonitor.o $
+    obj/talk/session/media/libjingle_p2p.mediarecorder.o $
+    obj/talk/session/media/libjingle_p2p.mediasession.o $
+    obj/talk/session/media/libjingle_p2p.mediasessionclient.o $
+    obj/talk/session/media/libjingle_p2p.rtcpmuxfilter.o $
+    obj/talk/session/media/libjingle_p2p.soundclip.o $
+    obj/talk/session/media/libjingle_p2p.srtpfilter.o $
+    obj/talk/session/media/libjingle_p2p.ssrcmuxfilter.o $
+    obj/talk/session/media/libjingle_p2p.typingmonitor.o
+  libtool_flags = -framework AVFoundation -framework CoreMedia -framework $
+      CoreVideo

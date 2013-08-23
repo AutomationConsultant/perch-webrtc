@@ -1,0 +1,49 @@
+defines = -DANGLE_DX11 -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DNSS_ENABLE_ECC $
+    -DNSS_STATIC -DNSS_USE_STATIC_LIBS -DUSE_UTIL_DIRECTLY $
+    -DNO_NSPR_10_SUPPORT -DNSPR_STATIC -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1 -DDEBUG -D_DEBUG
+includes = -I../../third_party/nss/nspr/pr/include $
+    -I../../third_party/nss/nspr/lib/ds $
+    -I../../third_party/nss/nspr/lib/libc/include $
+    -I../../third_party/nss/nss/lib/base $
+    -I../../third_party/nss/nss/lib/certdb $
+    -I../../third_party/nss/nss/lib/certhigh $
+    -I../../third_party/nss/nss/lib/cryptohi $
+    -I../../third_party/nss/nss/lib/dev $
+    -I../../third_party/nss/nss/lib/freebl $
+    -I../../third_party/nss/nss/lib/freebl/ecl $
+    -I../../third_party/nss/nss/lib/nss $
+    -I../../third_party/nss/nss/lib/pk11wrap $
+    -I../../third_party/nss/nss/lib/pkcs7 $
+    -I../../third_party/nss/nss/lib/pki $
+    -I../../third_party/nss/nss/lib/smime $
+    -I../../third_party/nss/nss/lib/softoken $
+    -I../../third_party/nss/nss/lib/util $
+    -I../../third_party/nss/nss/lib/ckfw/builtins
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -Xclang -load -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -Xclang -load $
+    -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/third_party/nss/nss/lib/nss/nss.nssver.o: cc $
+    ../../third_party/nss/nss/lib/nss/nssver.c
+
+build libcrnss.a: alink obj/third_party/nss/nss/lib/nss/nss.nssver.o

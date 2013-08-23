@@ -1,0 +1,45 @@
+ar = $ar_host
+cc = $cc_host
+cxx = $cxx_host
+ld = $ld_host
+defines = -DANGLE_DX11 -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DHAVE_CONFIG_H -DNDEBUG $
+    -DNVALGRIND -DDYNAMIC_ANNOTATIONS_ENABLED=0 -DNS_BLOCK_ASSERTIONS=1
+includes = -I../../third_party/yasm/source/config/ios $
+    -I../../third_party/yasm/source/patched-yasm
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk $
+    -Os -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mmacosx-version-min=10.6 -arch x86_64 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -Xclang -load -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -Xclang -load $
+    -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.phash.o: $
+    cc ../../third_party/yasm/source/patched-yasm/libyasm/phash.c
+build $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.xmalloc.o: $
+    cc ../../third_party/yasm/source/patched-yasm/libyasm/xmalloc.c
+build $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.xstrdup.o: $
+    cc ../../third_party/yasm/source/patched-yasm/libyasm/xstrdup.c
+
+build obj.host/third_party/yasm/libgenperf_libs.a: alink $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.phash.o $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.xmalloc.o $
+    obj.host/third_party/yasm/source/patched-yasm/libyasm/genperf_libs.xstrdup.o

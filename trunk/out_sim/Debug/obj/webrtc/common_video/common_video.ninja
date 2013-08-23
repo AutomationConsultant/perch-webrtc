@@ -1,0 +1,52 @@
+defines = -DANGLE_DX11 '-DWEBRTC_SVNREVISION="Unavailable(issue687)"' $
+    -DDISABLE_NACL -DCHROMIUM_BUILD -DUSE_LIBJPEG_TURBO=1 $
+    -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 -DENABLE_SPELLCHECK=1 $
+    -DDISABLE_FTP_SUPPORT=1 -DWEBRTC_MAC -DWEBRTC_IOS $
+    -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../../webrtc -I../.. -I../.. -I../../webrtc/modules/interface $
+    -I../../webrtc/common_video/interface $
+    -I../../webrtc/common_video/jpeg/include $
+    -I../../webrtc/common_video/libyuv/include $
+    -I../../third_party/libjpeg_turbo $
+    -I../../webrtc/system_wrappers/interface $
+    -I../../third_party/libyuv/include -I../../third_party/libyuv
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Werror -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wall -Wendif-labels -Wextra $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/webrtc/common_video/common_video.i420_video_frame.o: cxx $
+    ../../webrtc/common_video/i420_video_frame.cc
+build obj/webrtc/common_video/jpeg/common_video.data_manager.o: cxx $
+    ../../webrtc/common_video/jpeg/data_manager.cc
+build obj/webrtc/common_video/jpeg/common_video.jpeg.o: cxx $
+    ../../webrtc/common_video/jpeg/jpeg.cc
+build obj/webrtc/common_video/libyuv/common_video.webrtc_libyuv.o: cxx $
+    ../../webrtc/common_video/libyuv/webrtc_libyuv.cc
+build obj/webrtc/common_video/libyuv/common_video.scaler.o: cxx $
+    ../../webrtc/common_video/libyuv/scaler.cc
+build obj/webrtc/common_video/common_video.plane.o: cxx $
+    ../../webrtc/common_video/plane.cc
+build obj/webrtc/common_video/common_video.texture_video_frame.o: cxx $
+    ../../webrtc/common_video/texture_video_frame.cc
+
+build libcommon_video.a: alink $
+    obj/webrtc/common_video/common_video.i420_video_frame.o $
+    obj/webrtc/common_video/jpeg/common_video.data_manager.o $
+    obj/webrtc/common_video/jpeg/common_video.jpeg.o $
+    obj/webrtc/common_video/libyuv/common_video.webrtc_libyuv.o $
+    obj/webrtc/common_video/libyuv/common_video.scaler.o $
+    obj/webrtc/common_video/common_video.plane.o $
+    obj/webrtc/common_video/common_video.texture_video_frame.o

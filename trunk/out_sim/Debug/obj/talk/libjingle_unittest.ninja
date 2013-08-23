@@ -1,0 +1,279 @@
+build obj/talk/libjingle_unittest.actions_depends.stamp: stamp libgunit.a $
+    libjingle.a libjingle_unittest_main.a libexpat.a libjsoncpp.a $
+    libcrnss.a libnss_static.a libcrnspr.a libsqlite_regexp.a $
+    libsqlite_regexp.a libicui18n.a libicuuc.a libicudata.a libcrnssckbi.a $
+    libcrssl.a libyuv.a
+
+defines = -DANGLE_DX11 -DEXPAT_RELATIVE_PATH -DFEATURE_ENABLE_VOICEMAIL $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DLOGGING=1 $
+    -DSRTP_RELATIVE_PATH -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_PSTN $
+    -DHAVE_SRTP -DHAVE_WEBRTC_VIDEO -DHAVE_WEBRTC_VOICE $
+    -DUSE_WEBRTC_DEV_BRANCH -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DLIBPEERCONNECTION_LIB=1 $
+    -DIOS -DHAVE_NSS_SSL_H=1 -DSSL_USE_NSS_RNG -DCARBON_DEPRECATED=YES $
+    -DHASH_NAMESPACE=__gnu_cxx -DPOSIX -DDISABLE_DYNAMIC_CAST -D_REENTRANT $
+    -DXML_STATIC -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../.. -I../../third_party -I../../third_party/webrtc $
+    -I../../webrtc -I../../testing/gtest/include $
+    -I../../third_party/expat/files/lib $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -I../../third_party/libyuv/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/talk/base/libjingle_unittest.asynchttprequest_unittest.o: cxx $
+    ../../talk/base/asynchttprequest_unittest.cc
+build obj/talk/base/libjingle_unittest.atomicops_unittest.o: cxx $
+    ../../talk/base/atomicops_unittest.cc
+build obj/talk/base/libjingle_unittest.autodetectproxy_unittest.o: cxx $
+    ../../talk/base/autodetectproxy_unittest.cc
+build obj/talk/base/libjingle_unittest.bandwidthsmoother_unittest.o: cxx $
+    ../../talk/base/bandwidthsmoother_unittest.cc
+build obj/talk/base/libjingle_unittest.base64_unittest.o: cxx $
+    ../../talk/base/base64_unittest.cc
+build obj/talk/base/libjingle_unittest.basictypes_unittest.o: cxx $
+    ../../talk/base/basictypes_unittest.cc
+build obj/talk/base/libjingle_unittest.bind_unittest.o: cxx $
+    ../../talk/base/bind_unittest.cc
+build obj/talk/base/libjingle_unittest.buffer_unittest.o: cxx $
+    ../../talk/base/buffer_unittest.cc
+build obj/talk/base/libjingle_unittest.bytebuffer_unittest.o: cxx $
+    ../../talk/base/bytebuffer_unittest.cc
+build obj/talk/base/libjingle_unittest.byteorder_unittest.o: cxx $
+    ../../talk/base/byteorder_unittest.cc
+build obj/talk/base/libjingle_unittest.cpumonitor_unittest.o: cxx $
+    ../../talk/base/cpumonitor_unittest.cc
+build obj/talk/base/libjingle_unittest.crc32_unittest.o: cxx $
+    ../../talk/base/crc32_unittest.cc
+build obj/talk/base/libjingle_unittest.event_unittest.o: cxx $
+    ../../talk/base/event_unittest.cc
+build obj/talk/base/libjingle_unittest.filelock_unittest.o: cxx $
+    ../../talk/base/filelock_unittest.cc
+build obj/talk/base/libjingle_unittest.fileutils_unittest.o: cxx $
+    ../../talk/base/fileutils_unittest.cc
+build obj/talk/base/libjingle_unittest.helpers_unittest.o: cxx $
+    ../../talk/base/helpers_unittest.cc
+build obj/talk/base/libjingle_unittest.httpbase_unittest.o: cxx $
+    ../../talk/base/httpbase_unittest.cc
+build obj/talk/base/libjingle_unittest.httpcommon_unittest.o: cxx $
+    ../../talk/base/httpcommon_unittest.cc
+build obj/talk/base/libjingle_unittest.httpserver_unittest.o: cxx $
+    ../../talk/base/httpserver_unittest.cc
+build obj/talk/base/libjingle_unittest.ipaddress_unittest.o: cxx $
+    ../../talk/base/ipaddress_unittest.cc
+build obj/talk/base/libjingle_unittest.logging_unittest.o: cxx $
+    ../../talk/base/logging_unittest.cc
+build obj/talk/base/libjingle_unittest.md5digest_unittest.o: cxx $
+    ../../talk/base/md5digest_unittest.cc
+build obj/talk/base/libjingle_unittest.messagedigest_unittest.o: cxx $
+    ../../talk/base/messagedigest_unittest.cc
+build obj/talk/base/libjingle_unittest.messagequeue_unittest.o: cxx $
+    ../../talk/base/messagequeue_unittest.cc
+build obj/talk/base/libjingle_unittest.multipart_unittest.o: cxx $
+    ../../talk/base/multipart_unittest.cc
+build obj/talk/base/libjingle_unittest.nat_unittest.o: cxx $
+    ../../talk/base/nat_unittest.cc
+build obj/talk/base/libjingle_unittest.network_unittest.o: cxx $
+    ../../talk/base/network_unittest.cc
+build obj/talk/base/libjingle_unittest.nullsocketserver_unittest.o: cxx $
+    ../../talk/base/nullsocketserver_unittest.cc
+build obj/talk/base/libjingle_unittest.optionsfile_unittest.o: cxx $
+    ../../talk/base/optionsfile_unittest.cc
+build obj/talk/base/libjingle_unittest.pathutils_unittest.o: cxx $
+    ../../talk/base/pathutils_unittest.cc
+build obj/talk/base/libjingle_unittest.physicalsocketserver_unittest.o: cxx $
+    ../../talk/base/physicalsocketserver_unittest.cc
+build obj/talk/base/libjingle_unittest.profiler_unittest.o: cxx $
+    ../../talk/base/profiler_unittest.cc
+build obj/talk/base/libjingle_unittest.proxy_unittest.o: cxx $
+    ../../talk/base/proxy_unittest.cc
+build obj/talk/base/libjingle_unittest.proxydetect_unittest.o: cxx $
+    ../../talk/base/proxydetect_unittest.cc
+build obj/talk/base/libjingle_unittest.ratelimiter_unittest.o: cxx $
+    ../../talk/base/ratelimiter_unittest.cc
+build obj/talk/base/libjingle_unittest.ratetracker_unittest.o: cxx $
+    ../../talk/base/ratetracker_unittest.cc
+build $
+    obj/talk/base/libjingle_unittest.referencecountedsingletonfactory_unittest.o: $
+    cxx ../../talk/base/referencecountedsingletonfactory_unittest.cc
+build obj/talk/base/libjingle_unittest.rollingaccumulator_unittest.o: cxx $
+    ../../talk/base/rollingaccumulator_unittest.cc
+build obj/talk/base/libjingle_unittest.sha1digest_unittest.o: cxx $
+    ../../talk/base/sha1digest_unittest.cc
+build obj/talk/base/libjingle_unittest.sharedexclusivelock_unittest.o: cxx $
+    ../../talk/base/sharedexclusivelock_unittest.cc
+build obj/talk/base/libjingle_unittest.signalthread_unittest.o: cxx $
+    ../../talk/base/signalthread_unittest.cc
+build obj/talk/base/libjingle_unittest.sigslot_unittest.o: cxx $
+    ../../talk/base/sigslot_unittest.cc
+build obj/talk/base/libjingle_unittest.socket_unittest.o: cxx $
+    ../../talk/base/socket_unittest.cc
+build obj/talk/base/libjingle_unittest.socketaddress_unittest.o: cxx $
+    ../../talk/base/socketaddress_unittest.cc
+build obj/talk/base/libjingle_unittest.stream_unittest.o: cxx $
+    ../../talk/base/stream_unittest.cc
+build obj/talk/base/libjingle_unittest.stringencode_unittest.o: cxx $
+    ../../talk/base/stringencode_unittest.cc
+build obj/talk/base/libjingle_unittest.stringutils_unittest.o: cxx $
+    ../../talk/base/stringutils_unittest.cc
+build obj/talk/base/libjingle_unittest.task_unittest.o: cxx $
+    ../../talk/base/task_unittest.cc
+build obj/talk/base/libjingle_unittest.testclient_unittest.o: cxx $
+    ../../talk/base/testclient_unittest.cc
+build obj/talk/base/libjingle_unittest.thread_unittest.o: cxx $
+    ../../talk/base/thread_unittest.cc
+build obj/talk/base/libjingle_unittest.timeutils_unittest.o: cxx $
+    ../../talk/base/timeutils_unittest.cc
+build obj/talk/base/libjingle_unittest.urlencode_unittest.o: cxx $
+    ../../talk/base/urlencode_unittest.cc
+build obj/talk/base/libjingle_unittest.versionparsing_unittest.o: cxx $
+    ../../talk/base/versionparsing_unittest.cc
+build obj/talk/base/libjingle_unittest.virtualsocket_unittest.o: cxx $
+    ../../talk/base/virtualsocket_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.qname_unittest.o: cxx $
+    ../../talk/xmllite/qname_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.xmlbuilder_unittest.o: cxx $
+    ../../talk/xmllite/xmlbuilder_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.xmlelement_unittest.o: cxx $
+    ../../talk/xmllite/xmlelement_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.xmlnsstack_unittest.o: cxx $
+    ../../talk/xmllite/xmlnsstack_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.xmlparser_unittest.o: cxx $
+    ../../talk/xmllite/xmlparser_unittest.cc
+build obj/talk/xmllite/libjingle_unittest.xmlprinter_unittest.o: cxx $
+    ../../talk/xmllite/xmlprinter_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.hangoutpubsubclient_unittest.o: cxx $
+    ../../talk/xmpp/hangoutpubsubclient_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.jid_unittest.o: cxx $
+    ../../talk/xmpp/jid_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.mucroomconfigtask_unittest.o: cxx $
+    ../../talk/xmpp/mucroomconfigtask_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.mucroomdiscoverytask_unittest.o: cxx $
+    ../../talk/xmpp/mucroomdiscoverytask_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.mucroomlookuptask_unittest.o: cxx $
+    ../../talk/xmpp/mucroomlookuptask_unittest.cc
+build $
+    obj/talk/xmpp/libjingle_unittest.mucroomuniquehangoutidtask_unittest.o: $
+    cxx ../../talk/xmpp/mucroomuniquehangoutidtask_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.pingtask_unittest.o: cxx $
+    ../../talk/xmpp/pingtask_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.pubsubclient_unittest.o: cxx $
+    ../../talk/xmpp/pubsubclient_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.pubsubtasks_unittest.o: cxx $
+    ../../talk/xmpp/pubsubtasks_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.util_unittest.o: cxx $
+    ../../talk/xmpp/util_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.xmppengine_unittest.o: cxx $
+    ../../talk/xmpp/xmppengine_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.xmpplogintask_unittest.o: cxx $
+    ../../talk/xmpp/xmpplogintask_unittest.cc
+build obj/talk/xmpp/libjingle_unittest.xmppstanzaparser_unittest.o: cxx $
+    ../../talk/xmpp/xmppstanzaparser_unittest.cc
+build obj/talk/base/libjingle_unittest.sslidentity_unittest.o: cxx $
+    ../../talk/base/sslidentity_unittest.cc
+build obj/talk/base/libjingle_unittest.sslstreamadapter_unittest.o: cxx $
+    ../../talk/base/sslstreamadapter_unittest.cc
+
+ldflags = -Wl,-search_paths_first -force_load $
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a $
+    -mios-simulator-version-min=6.0 -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -arch i386 -L.
+libs = $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/lib/libsqlite3.dylib
+build libjingle_unittest: link $
+    obj/talk/base/libjingle_unittest.asynchttprequest_unittest.o $
+    obj/talk/base/libjingle_unittest.atomicops_unittest.o $
+    obj/talk/base/libjingle_unittest.autodetectproxy_unittest.o $
+    obj/talk/base/libjingle_unittest.bandwidthsmoother_unittest.o $
+    obj/talk/base/libjingle_unittest.base64_unittest.o $
+    obj/talk/base/libjingle_unittest.basictypes_unittest.o $
+    obj/talk/base/libjingle_unittest.bind_unittest.o $
+    obj/talk/base/libjingle_unittest.buffer_unittest.o $
+    obj/talk/base/libjingle_unittest.bytebuffer_unittest.o $
+    obj/talk/base/libjingle_unittest.byteorder_unittest.o $
+    obj/talk/base/libjingle_unittest.cpumonitor_unittest.o $
+    obj/talk/base/libjingle_unittest.crc32_unittest.o $
+    obj/talk/base/libjingle_unittest.event_unittest.o $
+    obj/talk/base/libjingle_unittest.filelock_unittest.o $
+    obj/talk/base/libjingle_unittest.fileutils_unittest.o $
+    obj/talk/base/libjingle_unittest.helpers_unittest.o $
+    obj/talk/base/libjingle_unittest.httpbase_unittest.o $
+    obj/talk/base/libjingle_unittest.httpcommon_unittest.o $
+    obj/talk/base/libjingle_unittest.httpserver_unittest.o $
+    obj/talk/base/libjingle_unittest.ipaddress_unittest.o $
+    obj/talk/base/libjingle_unittest.logging_unittest.o $
+    obj/talk/base/libjingle_unittest.md5digest_unittest.o $
+    obj/talk/base/libjingle_unittest.messagedigest_unittest.o $
+    obj/talk/base/libjingle_unittest.messagequeue_unittest.o $
+    obj/talk/base/libjingle_unittest.multipart_unittest.o $
+    obj/talk/base/libjingle_unittest.nat_unittest.o $
+    obj/talk/base/libjingle_unittest.network_unittest.o $
+    obj/talk/base/libjingle_unittest.nullsocketserver_unittest.o $
+    obj/talk/base/libjingle_unittest.optionsfile_unittest.o $
+    obj/talk/base/libjingle_unittest.pathutils_unittest.o $
+    obj/talk/base/libjingle_unittest.physicalsocketserver_unittest.o $
+    obj/talk/base/libjingle_unittest.profiler_unittest.o $
+    obj/talk/base/libjingle_unittest.proxy_unittest.o $
+    obj/talk/base/libjingle_unittest.proxydetect_unittest.o $
+    obj/talk/base/libjingle_unittest.ratelimiter_unittest.o $
+    obj/talk/base/libjingle_unittest.ratetracker_unittest.o $
+    obj/talk/base/libjingle_unittest.referencecountedsingletonfactory_unittest.o $
+    obj/talk/base/libjingle_unittest.rollingaccumulator_unittest.o $
+    obj/talk/base/libjingle_unittest.sha1digest_unittest.o $
+    obj/talk/base/libjingle_unittest.sharedexclusivelock_unittest.o $
+    obj/talk/base/libjingle_unittest.signalthread_unittest.o $
+    obj/talk/base/libjingle_unittest.sigslot_unittest.o $
+    obj/talk/base/libjingle_unittest.socket_unittest.o $
+    obj/talk/base/libjingle_unittest.socketaddress_unittest.o $
+    obj/talk/base/libjingle_unittest.stream_unittest.o $
+    obj/talk/base/libjingle_unittest.stringencode_unittest.o $
+    obj/talk/base/libjingle_unittest.stringutils_unittest.o $
+    obj/talk/base/libjingle_unittest.task_unittest.o $
+    obj/talk/base/libjingle_unittest.testclient_unittest.o $
+    obj/talk/base/libjingle_unittest.thread_unittest.o $
+    obj/talk/base/libjingle_unittest.timeutils_unittest.o $
+    obj/talk/base/libjingle_unittest.urlencode_unittest.o $
+    obj/talk/base/libjingle_unittest.versionparsing_unittest.o $
+    obj/talk/base/libjingle_unittest.virtualsocket_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.qname_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.xmlbuilder_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.xmlelement_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.xmlnsstack_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.xmlparser_unittest.o $
+    obj/talk/xmllite/libjingle_unittest.xmlprinter_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.hangoutpubsubclient_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.jid_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.mucroomconfigtask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.mucroomdiscoverytask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.mucroomlookuptask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.mucroomuniquehangoutidtask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.pingtask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.pubsubclient_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.pubsubtasks_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.util_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.xmppengine_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.xmpplogintask_unittest.o $
+    obj/talk/xmpp/libjingle_unittest.xmppstanzaparser_unittest.o $
+    obj/talk/base/libjingle_unittest.sslidentity_unittest.o $
+    obj/talk/base/libjingle_unittest.sslstreamadapter_unittest.o $
+    libjsoncpp.a libicuuc.a libicudata.a libjingle.a libexpat.a libcrnss.a $
+    libcrnspr.a libgunit.a libnss_static.a libcrnssckbi.a libicui18n.a $
+    libjingle_unittest_main.a libyuv.a libsqlite_regexp.a libcrssl.a | $
+    libsqlite_regexp.a

@@ -1,0 +1,353 @@
+ar = $ar_host
+cc = $cc_host
+cxx = $cxx_host
+ld = $ld_host
+defines = -DANGLE_DX11 -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = 
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mmacosx-version-min=10.6 -arch x86_64 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args $
+    -Wno-c++11-narrowing -Wno-format -Wno-deprecated
+cflags_c = -std=c99 -Xclang -load -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -Xclang -load $
+    -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdbalanceformatter.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDBalanceFormatter.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassdump.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDClassDump.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassdumpvisitor.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDClassDumpVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassframeworkvisitor.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDClassFrameworkVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cddatacursor.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDDataCursor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfatarch.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDFatArch.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfatfile.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDFatFile.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfile.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDFile.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfindmethodvisitor.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDFindMethodVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdyldinfo.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCDyldInfo.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdylib.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCDylib.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdylinker.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCDylinker.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdynamicsymboltable.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDLCDynamicSymbolTable.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcencryptioninfo.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCEncryptionInfo.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlclinkeditdata.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCLinkeditData.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcprebindchecksum.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCPrebindChecksum.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcprebounddylib.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCPreboundDylib.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcroutines32.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCRoutines32.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcroutines64.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCRoutines64.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcrunpath.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCRunPath.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSegment.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment32.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSegment32.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment64.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSegment64.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubclient.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSubClient.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubframework.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSubFramework.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsublibrary.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSubLibrary.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubumbrella.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSubUmbrella.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsymboltable.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCSymbolTable.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlctwolevelhints.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCTwoLevelHints.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcuuid.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCUUID.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcunixthread.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCUnixThread.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcunknown.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLCUnknown.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdloadcommand.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDLoadCommand.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmacho32file.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDMachO32File.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmacho64file.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDMachO64File.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmachofile.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDMachOFile.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmethodtype.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDMethodType.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmultifilevisitor.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDMultiFileVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdoccategory.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCCategory.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocclass.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCClass.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocivar.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCIvar.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocmethod.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCMethod.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocmodule.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCModule.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocproperty.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCProperty.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocprotocol.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCProtocol.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocsymtab.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDOCSymtab.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec1processor.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDObjectiveC1Processor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec2processor32.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDObjectiveC2Processor32.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec2processor64.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDObjectiveC2Processor64.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivecprocessor.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDObjectiveCProcessor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdrelocationinfo.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDRelocationInfo.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsearchpathstate.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSearchPathState.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSection.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection32.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSection32.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection64.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSection64.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdstructureinfo.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDStructureInfo.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdstructuretable.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDStructureTable.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsymbol.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSymbol.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsymbolreferences.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDSymbolReferences.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtextclassdumpvisitor.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDTextClassDumpVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtoposortnode.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTopoSortNode.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtype.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDType.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypecontroller.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTypeController.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypeformatter.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTypeFormatter.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypelexer.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTypeLexer.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypename.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTypeName.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypeparser.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDTypeParser.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdvisitor.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/CDVisitor.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdvisitorpropertystate.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/CDVisitorPropertyState.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsarray-extensions.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/NSArray-Extensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsdata-cdextensions.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/NSData-CDExtensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nserror-cdextensions.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/NSError-CDExtensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsobject-cdextensions.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/NSObject-CDExtensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsscanner-extensions.o: $
+    objc $
+    ../../testing/iossim/third_party/class-dump/src/NSScanner-Extensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsstring-extensions.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/NSString-Extensions.m
+build $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.class-dump.o: $
+    objc ../../testing/iossim/third_party/class-dump/src/class-dump.m
+
+ldflags = -Wl,-search_paths_first -mmacosx-version-min=10.6 -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk $
+    -arch x86_64 -L.
+libs = -framework Foundation $
+    /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/lib/libcrypto.dylib
+build class-dump: link $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdbalanceformatter.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassdump.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassdumpvisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdclassframeworkvisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cddatacursor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfatarch.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfatfile.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfile.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdfindmethodvisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdyldinfo.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdylib.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdylinker.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcdynamicsymboltable.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcencryptioninfo.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlclinkeditdata.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcprebindchecksum.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcprebounddylib.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcroutines32.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcroutines64.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcrunpath.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment32.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsegment64.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubclient.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubframework.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsublibrary.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsubumbrella.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcsymboltable.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlctwolevelhints.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcuuid.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcunixthread.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdlcunknown.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdloadcommand.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmacho32file.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmacho64file.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmachofile.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmethodtype.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdmultifilevisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdoccategory.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocclass.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocivar.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocmethod.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocmodule.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocproperty.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocprotocol.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdocsymtab.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec1processor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec2processor32.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivec2processor64.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdobjectivecprocessor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdrelocationinfo.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsearchpathstate.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection32.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsection64.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdstructureinfo.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdstructuretable.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsymbol.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdsymbolreferences.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtextclassdumpvisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtoposortnode.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtype.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypecontroller.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypeformatter.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypelexer.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypename.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdtypeparser.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdvisitor.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.cdvisitorpropertystate.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsarray-extensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsdata-cdextensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nserror-cdextensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsobject-cdextensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsscanner-extensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.nsstring-extensions.o $
+    obj.host/testing/iossim/third_party/class-dump/src/class-dump.class-dump.o

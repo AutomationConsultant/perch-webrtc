@@ -1,0 +1,39 @@
+defines = -DANGLE_DX11 -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DJSON_USE_EXCEPTION=0 $
+    -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include $
+    -I../../third_party/jsoncpp/source/src/lib_json
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -Xclang -load -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -Xclang -load $
+    -Xclang $
+    /Users/perch/WebRTC/trunk/tools/clang/scripts/../../../third_party/llvm-build/Release+Asserts/lib/libFindBadConstructs.dylib $
+    -Xclang -add-plugin -Xclang find-bad-constructs -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build obj/third_party/jsoncpp/source/src/lib_json/jsoncpp.json_reader.o: $
+    cxx ../../third_party/jsoncpp/source/src/lib_json/json_reader.cpp
+build obj/third_party/jsoncpp/overrides/src/lib_json/jsoncpp.json_value.o: $
+    cxx ../../third_party/jsoncpp/overrides/src/lib_json/json_value.cpp
+build obj/third_party/jsoncpp/source/src/lib_json/jsoncpp.json_writer.o: $
+    cxx ../../third_party/jsoncpp/source/src/lib_json/json_writer.cpp
+
+build libjsoncpp.a: alink $
+    obj/third_party/jsoncpp/source/src/lib_json/jsoncpp.json_reader.o $
+    obj/third_party/jsoncpp/overrides/src/lib_json/jsoncpp.json_value.o $
+    obj/third_party/jsoncpp/source/src/lib_json/jsoncpp.json_writer.o

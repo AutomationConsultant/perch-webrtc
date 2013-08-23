@@ -1,0 +1,13 @@
+build obj/webrtc/webrtc.actions_depends.stamp: stamp libcommon_audio.a $
+    libcommon_audio_sse2.a libcommon_video.a libCNG.a libG711.a libG722.a $
+    libiLBC.a libiSAC.a libiSACFix.a libPCM16B.a libaudio_coding_module.a $
+    libNetEq.a libNetEq4.a libaudio_conference_mixer.a libaudio_device.a $
+    libaudio_processing.a libbitrate_controller.a libdesktop_capture.a $
+    libmedia_file.a libpaced_sender.a libremote_bitrate_estimator.a $
+    librtp_rtcp.a libwebrtc_utility.a libwebrtc_i420.a $
+    libwebrtc_video_coding.a libvideo_capture_module.a $
+    libvideo_processing.a libvideo_render_module.a libwebrtc_opus.a $
+    libaudio_processing_sse2.a libvideo_processing_sse2.a $
+    libsystem_wrappers.a libvideo_engine_core.a libvoice_engine.a $
+    libwebrtc_vp8.a
+

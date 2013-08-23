@@ -1,0 +1,63 @@
+build obj/talk/peerconnection_server.actions_depends.stamp: stamp $
+    libjingle.a libexpat.a libjsoncpp.a libcrnss.a libnss_static.a $
+    libcrnspr.a libsqlite_regexp.a libsqlite_regexp.a libicui18n.a $
+    libicuuc.a libicudata.a libcrnssckbi.a libcrssl.a
+
+defines = -DANGLE_DX11 -DEXPAT_RELATIVE_PATH -DFEATURE_ENABLE_VOICEMAIL $
+    -DGTEST_RELATIVE_PATH -DJSONCPP_RELATIVE_PATH -DLOGGING=1 $
+    -DSRTP_RELATIVE_PATH -DFEATURE_ENABLE_SSL -DFEATURE_ENABLE_PSTN $
+    -DHAVE_SRTP -DHAVE_WEBRTC_VIDEO -DHAVE_WEBRTC_VOICE $
+    -DUSE_WEBRTC_DEV_BRANCH -DDISABLE_NACL -DCHROMIUM_BUILD $
+    -DUSE_LIBJPEG_TURBO=1 -DENABLE_INPUT_SPEECH -DENABLE_EGLIMAGE=1 $
+    -DENABLE_SPELLCHECK=1 -DDISABLE_FTP_SUPPORT=1 -DLIBPEERCONNECTION_LIB=1 $
+    -DIOS -DHAVE_NSS_SSL_H=1 -DSSL_USE_NSS_RNG -DCARBON_DEPRECATED=YES $
+    -DHASH_NAMESPACE=__gnu_cxx -DPOSIX -DDISABLE_DYNAMIC_CAST -D_REENTRANT $
+    -DXML_STATIC -DDYNAMIC_ANNOTATIONS_ENABLED=1 $
+    -DWTF_USE_DYNAMIC_ANNOTATIONS=1
+includes = -I../.. -I../../third_party -I../../third_party/webrtc $
+    -I../../webrtc -I../../third_party/expat/files/lib $
+    -I../../third_party/jsoncpp/overrides/include $
+    -I../../third_party/jsoncpp/source/include
+cflags = -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -O0 -gdwarf-2 -fvisibility=hidden -Wnewline-eof $
+    -mios-simulator-version-min=6.0 -arch i386 -Wendif-labels $
+    -Wno-unused-parameter -Wno-missing-field-initializers -Wheader-hygiene $
+    -Wno-c++11-narrowing -Wno-char-subscripts -Wno-unused-function $
+    -Wno-covered-switch-default -Wstring-conversion $
+    -Wno-deprecated-register -Wheader-hygiene -Wno-char-subscripts $
+    -Wno-unused-function -Wno-unnamed-type-template-args -Wno-c++11-narrowing
+cflags_c = -std=c99 -fcolor-diagnostics
+cflags_cc = -std=gnu++0x -fno-rtti -fno-exceptions $
+    -fvisibility-inlines-hidden -fno-threadsafe-statics -fcolor-diagnostics $
+    -std=gnu++11
+cflags_objc = $cflags_c
+cflags_objcc = $cflags_cc -fobjc-call-cxx-cdtors
+
+build $
+    obj/talk/examples/peerconnection/server/peerconnection_server.data_socket.o: $
+    cxx ../../talk/examples/peerconnection/server/data_socket.cc
+build obj/talk/examples/peerconnection/server/peerconnection_server.main.o: $
+    cxx ../../talk/examples/peerconnection/server/main.cc
+build $
+    obj/talk/examples/peerconnection/server/peerconnection_server.peer_channel.o: $
+    cxx ../../talk/examples/peerconnection/server/peer_channel.cc
+build $
+    obj/talk/examples/peerconnection/server/peerconnection_server.utils.o: $
+    cxx ../../talk/examples/peerconnection/server/utils.cc
+
+ldflags = -Wl,-search_paths_first -force_load $
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphonesimulator.a $
+    -mios-simulator-version-min=6.0 -isysroot $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk $
+    -arch i386 -L.
+libs = $
+    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/lib/libsqlite3.dylib
+build peerconnection_server: link $
+    obj/talk/examples/peerconnection/server/peerconnection_server.data_socket.o $
+    obj/talk/examples/peerconnection/server/peerconnection_server.main.o $
+    obj/talk/examples/peerconnection/server/peerconnection_server.peer_channel.o $
+    obj/talk/examples/peerconnection/server/peerconnection_server.utils.o $
+    libjsoncpp.a libicudata.a libjingle.a libexpat.a libcrnss.a libcrnspr.a $
+    libnss_static.a libcrnssckbi.a libicui18n.a libicuuc.a $
+    libsqlite_regexp.a libcrssl.a | libsqlite_regexp.a
